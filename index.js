@@ -1,13 +1,8 @@
 "use strict";
 
-var config = {
-    channels: ['#jsxtest'],
-    server: 'irc.mozilla.org',
-    botName: 'botzilla'
-};
-
-
+var config = require('./config').config;
 var irc = require('irc');
+
 var bot = new irc.Client(config.server, config.botName, {
     channels: config.channels
 });
@@ -22,7 +17,4 @@ bot.addListener('message', function (from, to, text, message) {
     console.log(message)
 });
 
-/*
-bot.addListener('message', function (from, to, text, message) {
-    bot.say(config.channels[0], 'public message');
-});*/
+console.log(config.botName + ' started on ' + new Date());
